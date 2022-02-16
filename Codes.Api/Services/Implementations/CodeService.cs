@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Codes.Api.Services.Contracts;
 using Codes.Domain.Entities;
 using Codes.Domain.Interfaces.Repositories;
-using CodesApi.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace CodesApi.Services.Implementations
+namespace Codes.Api.Services.Implementations
 {
     /// <inheritdoc />
     class CodeService : ICodeService

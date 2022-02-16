@@ -1,11 +1,10 @@
 using System;
-using System.IO;
 using System.Reflection;
+using Codes.Api.Services.Contracts;
+using Codes.Api.Services.Implementations;
+using Codes.Api.Validators;
 using Codes.Domain.Interfaces.Repositories;
 using Codes.Infrastructure;
-using CodesApi.Services.Contracts;
-using CodesApi.Services.Implementations;
-using CodesApi.Validators;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace CodesApi
+namespace Codes.Api
 {
     public class Startup
     {
@@ -50,7 +49,6 @@ namespace CodesApi
                 c.CustomOperationIds(apiDescription =>
                     apiDescription.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null);
             });
-            
             // FOR PRODUCTION
             /*services.AddDbContext<CodesDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PgSqlConnection"),
@@ -68,6 +66,7 @@ namespace CodesApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

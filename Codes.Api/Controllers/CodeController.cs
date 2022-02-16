@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Codes.Api.Services.Contracts;
 using Codes.Domain.Entities;
-using CodesApi.Services.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CodesApi.Controllers
+namespace Codes.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

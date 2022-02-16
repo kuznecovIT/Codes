@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Codes.Domain.Entities;
-namespace CodesApi.Services.Contracts
+
+namespace Codes.Api.Services.Contracts
 {
     /// <summary>
     /// Сервис для работы с кодами

@@ -4,7 +4,7 @@ using Codes.Domain.Enumerations;
 using EnumsNET;
 using FluentValidation;
 
-namespace CodesApi.Validators
+namespace Codes.Api.Validators
 {
     public class CodeValidator : AbstractValidator<Code>
     {
