@@ -1,0 +1,62 @@
+﻿<div>
+    <Table TItem="Code" DataSource="listOfData" Bordered>
+        <Column @bind-Field="@context.Id" Sortable Filterable/>
+        <Column @bind-Field="@context.Value" Sortable Filterable/>
+        <Column @bind-Field="@context.CodeType" Sortable Filterable/>
+    </Table>
+</div>
+
+@inject ICodesApiClient _apiClient;
+@inject MessageService _messageService;
+
+@using System.Text.Json;
+@using Codes.ApiClient
+@code{
+
+    bool _addModalOpen = false;
+    
+
+    List<Code> listOfData = new List<Code>();
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CreateFakeCodes();
+        await FillDataToTable();
+    }
+
+    private async Task CreateFakeCodes()
+    {
+        var fakeData = new List<Code>()
+        {
+            new Code() {Value = "new", CodeType = CodeType._1},
+            new Code() {Value = "new1", CodeType = CodeType._0},
+            new Code() {Value = "new2", CodeType = CodeType._1},
+            new Code() {Value = "new3", CodeType = CodeType._2},
+            new Code() {Value = "new4", CodeType = CodeType._2},
+        };
+
+        try
+        {
+            await _apiClient.CreateCodesAsync(fakeData);
+        }
+        catch (Exception e)
+        {
+            await _messageService.Error($"Error while creating fake codes {e}", 10);
+        }
+    }
+
+    private async Task FillDataToTable()
+    {
+        try
+        {
+            var result = await _apiClient.GetCodesAsync();
+            if (result.Any())
+                listOfData.AddRange(result);
+        }
+        catch (Exception e)
+        {
+            await _messageService.Error($"Error while filling table with fake codes {e}", 10);
+        }
+    }
+}
