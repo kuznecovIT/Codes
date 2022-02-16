@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NSwag.ApiDescription.Client" Version="13.14.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <OpenApiReference Include="Codes.json" SourceUrl="http://localhost:5001/swagger/v1/swagger.json">
+            <CodeGenerator>NSwagCSharp</CodeGenerator>
+            <Link>Codes.json</Link>
+            <Namespace>Codes.ApiClient</Namespace>
+            <ClassName>CodesApiClient</ClassName>
+            <OutputPath>CodesApiClient.cs</OutputPath>
+            <Options>/UseBaseUrl:false /GenerateClientInterfaces:true</Options>
+        </OpenApiReference>
+    </ItemGroup>
+
+    <Target Name="PreBuild" AfterTargets="PreBuildEvent">
+        <Exec Command="dotnet tool restore" />
+        <Exec Command="swagger tofile --output Codes.json ..\Codes.Api\bin\Debug\net5.0\Codes.Api.dll v1" />
+    </Target>
+</Project>
