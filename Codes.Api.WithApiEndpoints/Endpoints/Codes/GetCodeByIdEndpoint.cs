@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
-using Codes.Api.WithApiEndpoints.Attributes;
 using Codes.Api.WithApiEndpoints.Services.Contracts;
 using Codes.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
