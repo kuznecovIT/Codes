@@ -11,6 +11,8 @@ namespace Codes.Domain.Interfaces.Repositories
         
         Task<IEnumerable<TEntity>> GetAllAsync();
         
+        Task<IEnumerable<TEntity>> GetAllReadAsync();
+        
         Task<int> ExecuteSqlRawAsync(string sql);
         
         Task<bool> HasDataAsync();

@@ -31,7 +31,7 @@ namespace Codes.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCodes()
         {
-            var codes = await _codeService.GetAllCodes();
+            var codes = await _codeService.GetAllCodesRead();
             
             if (!codes.Any())
                 return NotFound("Codes not found.");

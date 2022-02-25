@@ -28,6 +28,10 @@ namespace Codes.Api.Services.Implementations
             await _unitOfWork.Codes.GetAllAsync();
 
         /// <inheritdoc />
+        public async Task<IEnumerable<Code>> GetAllCodesRead() => 
+            await _unitOfWork.Codes.GetAllReadAsync();
+
+            /// <inheritdoc />
         public async Task<int> CreateCodes(List<Code> codes)
         {
             if (await CheckDatabaseContainsData())

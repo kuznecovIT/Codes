@@ -20,68 +20,51 @@ namespace Codes.Infrastructure.Repositories
         }
         
         /// <inheritdoc />
-        public async Task<TEntity> GetAsync(object id)
-        {
-            return await _dbSet.FindAsync(id);
-        }
+        public async Task<TEntity> GetAsync(object id) => 
+            await _dbSet.FindAsync(id);
 
         /// <inheritdoc />
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            return await _dbSet.ToListAsync();
-        }
-        
-        
+        public async Task<IEnumerable<TEntity>> GetAllAsync() => 
+            await _dbSet.ToListAsync();
+
         /// <inheritdoc />
-        public async Task<int> ExecuteSqlRawAsync(string sql)
-        {
-            return await Context.Database.ExecuteSqlRawAsync(sql);
-        }
-        
+        public async Task<IEnumerable<TEntity>> GetAllReadAsync() => 
+            await _dbSet.AsNoTracking().ToListAsync();
+
+        /// <inheritdoc />
+        public async Task<int> ExecuteSqlRawAsync(string sql) => 
+            await Context.Database.ExecuteSqlRawAsync(sql);
+
         /// <inheritdoc />
         public Task<bool> HasDataAsync() =>
             _dbSet.AnyAsync();
 
         /// <inheritdoc />
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return _dbSet.Where(predicate);
-        }
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => 
+            _dbSet.Where(predicate);
 
         /// <inheritdoc />
-        public void Add(TEntity entity)
-        {
+        public void Add(TEntity entity) => 
             _dbSet.Add(entity);
-        }
 
         /// <inheritdoc />
-        public void AddRange(IEnumerable<TEntity> entity)
-        {
+        public void AddRange(IEnumerable<TEntity> entity) => 
             _dbSet.AddRange(entity);
-        }
 
         /// <inheritdoc />
-        public void Remove(TEntity entity)
-        {
+        public void Remove(TEntity entity) => 
             _dbSet.Remove(entity);
-        }
 
         /// <inheritdoc />
-        public void Update(TEntity entity)
-        {
+        public void Update(TEntity entity) => 
             _dbSet.Update(entity);
-        }
 
         /// <inheritdoc />
-        public void UpdateRange(IEnumerable<TEntity> entity)
-        {
+        public void UpdateRange(IEnumerable<TEntity> entity) => 
             _dbSet.UpdateRange(entity);
-        }
 
         /// <inheritdoc />
-        public void RemoveRange(IEnumerable<TEntity> entity)
-        {
+        public void RemoveRange(IEnumerable<TEntity> entity) => 
             _dbSet.RemoveRange(entity);
-        }
     }
 }

@@ -22,6 +22,12 @@ namespace Codes.Api.Services.Contracts
         /// </summary>
         /// <returns></returns>
         public Task<IEnumerable<Code>> GetAllCodes();
+        
+        /// <summary>
+        /// Get all codes without EF Tracking ( .AsNoTracking )
+        /// </summary>
+        /// <returns></returns>
+        public Task<IEnumerable<Code>> GetAllCodesRead();
 
         /// <summary>
         /// Create codes (sorting by codeType is used before creating) 
